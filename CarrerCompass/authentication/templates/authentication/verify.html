@@ -1,0 +1,28 @@
+{% extends "job/layout.html" %}
+{% load static %}
+{% block title %}
+    Verification
+{% endblock %}
+
+{% block body %}
+    <div class="center-position verify-container">
+        <h1>Enter Your Verification Code</h1>
+        <form action="{% url 'authentication:verify' %}" method="post" class="flexcol-container start" id="verify-form">
+            {% csrf_token %}
+            <div class="flexcol-container start">
+                {{form.digit.label_tag}}
+                {{form.digit}}
+                {% for error in form.digit.errors %}
+                    <span class="error">{{error}}</span>
+                {% empty %}
+                    <span class="digit-error error"></span>
+                {% endfor %}
+            </div>
+            <button class="primary-btn">Verify</button>
+        </form>
+        {% if message %}
+            <p class="error">{{message}}</p>
+        {% endif %}
+    </div>
+    <script src="{% static 'authentication/js/verify.js' %}"></script>
+{% endblock %}

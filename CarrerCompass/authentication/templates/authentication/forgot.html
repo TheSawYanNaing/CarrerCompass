@@ -1,0 +1,24 @@
+{% extends "job/layout.html" %}
+{% load static %}
+{% block title %}
+    Forgot
+{% endblock %}
+
+{% block body %}
+    <div class="center-position forgot-container">
+        <h1>Enter you Email to get OTP</h1>
+        <form action="{% url 'authentication:forgot' %}" method="post" class="flexcol-container start" id="forgot-form">
+            {% csrf_token %}
+            <div class="flexcol-container start">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Eg. JohnDoe@gmail.com" autocomplete = "off" autofocus>
+                <span class="email-error"></span>
+            </div>
+            <button type="submit" class="primary-btn">Get Code</button>
+            {% if message %}
+                <p class="error">{{message}}</p>
+            {% endif %}
+        </form>
+    </div>
+    <script src="{% static 'authentication/js/forgot.js' %}"></script>
+{% endblock %}

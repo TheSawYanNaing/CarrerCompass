@@ -1,0 +1,130 @@
+{% extends "job/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+    <div class="register-container {{is_login}}">
+        <div class="flexrow-container button-container">
+            <button class="primary-btn register-btn">Register</button>
+            <button class="login-btn">Login</button>
+        </div>
+        <div class="flexrow-container form">
+            {% comment %} Register Form {% endcomment %}
+            <form action="{% url 'authentication:register' %}" method="post" class="flexcol-container start" id="register-form">
+                {% csrf_token %}
+                <div class="flexcol-container start">
+                    {{register_form.username.label_tag}}
+                    {{register_form.username}}
+                    {% for error in register_form.username.errors %}
+                        <span class="error">{{error}}</span>
+                    {% empty %}
+                        <span class="username-error error"></span>
+                    {% endfor %}
+                </div>
+
+                <div class="flexcol-container start">
+                    {{register_form.email.label_tag}}
+                    {{register_form.email}}
+                    {% for error in register_form.email.errors %}
+                        <span class="error">{{error}}</span>
+                    {% empty %}
+                        <span class="register-email-error"></span>
+                    {% endfor %}
+                </div>
+
+                <div class="flexcol-container start">
+                    {{register_form.user_type.label_tag}}
+                    {{register_form.user_type}}
+                    {% for error in register_form.user_type.errors %}
+                        <span class="error">{{error}}</span>
+                    {% empty %}
+                        <span class="user-type-error error"></span>
+                    {% endfor %}
+                </div>
+
+                <div class="flexcol-container start">
+                    {{register_form.password.label_tag}}
+                    {{register_form.password}}
+                    {% for error in register_form.password.errors %}
+                        <span class="error">{{error}}</span>
+                    {% empty %}
+                        <span class="register-password-error error"></span>
+                    {% endfor %}
+                </div>
+
+                <div class="flexcol-container start">
+                    {{register_form.confirm_password.label_tag}}
+                    {{register_form.confirm_password}}
+                    {% for error in register_form.confirm_password.errors %}
+                        <span class="error">{{error}}</span>
+                    {% empty %}
+                        <span class="confirm-password-error error"></span>
+                    {% endfor %}
+                </div>
+
+                <button class="primary-btn">Register</button>
+
+                {% if message %}
+                    <span class="error">{{message}}</span>
+                {% endif %}
+            </form>
+
+            {% comment %} Text Description for login {% endcomment %}
+            <div class="hide login-text">
+                <h2>Welcome Back</h2>
+                <p>
+                    If you are just coming back home. We gladly greet you.
+                </p>
+                <button class="primary-btn login-switch-btn">Login</button>
+            </div>
+        </div>
+        <div class="flexrow-container form">
+            {% comment %} form for login {% endcomment %}
+            <form action="{% url 'authentication:login' %}" method="post" class="flexcol-container start" id="login-form">
+                {% csrf_token %}
+                <div class="flexcol-container start">
+                    {{login_form.email.label_tag}}
+                    {{login_form.email}}
+                    {% for error in login_form.email.errors %}
+                        <span class="error">{{error}}</span>
+                    {% empty %}
+                        <span class="login-email-error error"></span>
+                    {% endfor %}
+                </div>
+
+                <div class="flexcol-container start">
+                    {{login_form.password.label_tag}}
+                    {{login_form.password}}
+                    {% for error in login_form.password.errors %}
+                        <span class="error">{{error}}</span>
+                    {% empty %}
+                        <span class="login-password-error error"></span>
+                    {% endfor %}
+                </div>
+
+                <button type="submit" class="primary-btn">Login</button>
+
+                {% if login_message %}
+                    <span class="error">{{login_message}}</span>
+                {% endif %}
+                <p class="forgot"><a href="{% url 'authentication:forgot' %}">Forgot Password?</a></p>
+            </form>
+            <div>
+            <div class="hide register-text">
+                <h2>Greeting</h2>
+                <p>
+                    If your story here has yet to start,
+                    Come join us now, take part by heart.
+                    Begin your tale with open door
+                    Register here and soar once more.
+                </p>
+                <button class="primary-btn register-switch-btn">Register</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script src="{% static 'authentication/js/register.js' %}"></script>
+{% endblock %}

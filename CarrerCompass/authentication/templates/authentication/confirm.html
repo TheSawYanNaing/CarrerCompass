@@ -1,0 +1,26 @@
+{% extends "job/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    Confirmation
+{% endblock %}
+
+{% block body %}
+    <div class="center-position otp-container">
+        <h1>Enter Your OPT Code We Sent</h1>
+        <form action="{% url 'authentication:confirm' %}" method="post" class="flexcol-container start" id="otp-form">
+            {% csrf_token %}
+            <div class="flexcol-container start">
+                <label for="OTP">OPT Code</label>
+                <input type="number" name="otp" id="OTP" min="100000" max="999999" autofocus>
+                <span class="otp-error error"></span>
+            </div>
+            <button type="submit" class="primary-btn">Confirm</button>
+            {% if message %}
+                <p class="error">{{message}}</p>
+            {% endif %}
+        </form>
+    </div>
+    <script src="{% static 'authentication/js/confirm.js' %}"></script>
+{% endblock %}

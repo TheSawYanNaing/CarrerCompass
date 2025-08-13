@@ -1,0 +1,541 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root 
+{
+    --primaryBackground : #F9F9F6;
+    --headerBackground : #FFFFFF;
+    --highlight : #CFDBE8;
+    --headingText : #121417;
+    --boxBackground : #F7FAFC;
+    --text : #0D141C;
+    --accent : #0D80F2;
+}
+
+body 
+{
+    background-color: var(--primaryBackground);
+}
+
+.flexcol-container 
+{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.flexrow-container 
+{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+#header 
+{
+    justify-content: space-between;
+    padding: 15px 10px;
+    box-shadow: 0px 0px 2px 1px var(--accent);
+    position: relative;
+    position: sticky;
+    top: 0;
+}
+
+.banner 
+{
+    gap: 5px;
+    font-family: "Instrument Sans", sans-serif;
+}
+
+.banner svg 
+{
+    fill: var(--accent);
+}
+
+.banner h1 
+{
+    font-size: 16px;
+    color: var(--accent);
+}
+
+#navigation-container.show 
+{
+    max-height: 400px;
+    padding: 10px 0px;
+}
+
+#navigation-container 
+{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    background-color: var(--headerBackground);
+    border: 1px solid var(--accent);
+    gap: 10px;
+    transition: max-height 1s linear, padding 0.5s linear;
+    z-index: 2;
+}
+
+.flexcol-container ul, .flexrow-container ul 
+{
+    list-style: none;
+}
+
+.navigation,
+.auth-navigation 
+{
+    gap: 10px;
+}
+
+#navigation-container a 
+{
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#navigation-container .navigation a 
+{
+    color: var(--headingText);
+    position: relative;
+}
+
+#navigation-container .navigation a::after 
+{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: all 0.5s linear;
+}
+
+#navigation-container .navigation a:hover::after 
+{
+    width: 100%;
+}
+
+.primary-btn 
+{
+    background-color: var(--accent);
+    padding: 10px;
+    color: var(--headerBackground);
+    border-radius: 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.4s linear;
+}
+
+.primary-btn:hover 
+{
+    border: 1px solid var(--accent);
+    background-color: transparent;
+    color: var(--headingText);
+}
+
+.auth-navigation 
+{
+    margin: 10px 0px;
+}
+
+#menu-bar 
+{
+    cursor: pointer;
+    transition: all 0.4s linear;
+}
+
+#menu-bar:hover 
+{
+    transform: scale(1.03);
+}
+
+.register-container 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 90%;
+    max-width: 500px;
+    z-index: -1;
+}
+
+.start 
+{
+    align-items: flex-start;
+}
+
+.form 
+{
+    justify-content: center;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-family: "Inter", sans-serif;
+}
+
+.form input,
+.form select
+{
+    width: 250px;
+    padding: 5px 10px;
+    background-color: var(--boxBackground);
+    border: 1px solid var(--highlight);
+    outline: none;
+    border-radius: 5px;
+}
+
+.form span 
+{
+    width: 250px;
+}
+
+.form select, .form option
+{
+    cursor: pointer;
+}
+
+.form label 
+{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+#login-form 
+{
+    display: none;
+}
+
+#register-form, #login-form 
+{
+    gap: 10px;
+    margin: 20px 0px;
+}
+
+#register-form > div, #login-form > div 
+{
+    gap: 5px;
+}
+
+.register-container .flexrow-container 
+{
+    justify-content: center;
+}
+
+.register-container .flexrow-container > button 
+{
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.5s linear;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    z-index: -1000000000000;
+} 
+
+.register-container .flexrow-container > button:hover 
+{
+    border: 1px solid var(--accent);
+}
+
+.hide 
+{
+    display: none;
+}
+
+.error 
+{
+    color: red;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+}
+
+.center-position 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    margin: 0px auto;
+}
+
+.verify-container 
+{
+    max-width: 300px;
+    opacity: 0;
+    top: 40%;
+}
+
+.verify-container h1 
+{
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.verify-container form 
+{
+    width: 100%;
+    font-family: "Inter", sans-serif;
+}
+.verify-container form div 
+{
+    width: 100%;
+}
+.verify-container input 
+{
+    width: 100%;
+    padding: 5px 10px;
+    background-color: var(--boxBackground);
+    border: 1px solid var(--highlight);
+    outline: none;
+    border-radius: 5px;
+    transition: all 0.4s linear;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.verify-container input:focus 
+{
+    box-shadow: 0px 0px 5px 1px var(--highlight);
+}
+
+.isLogging #register-form
+{
+    display: none;
+}
+
+.isLogging #login-form 
+{
+    display: flex;
+}
+
+.forgot a 
+{
+    color: var(--text);
+}
+
+.forgot a:hover 
+{
+    color: var(--accent);
+}
+
+.forgot-container,
+.otp-container
+{
+    max-width: 300px;
+    top: 40%;
+    opacity: 0;
+}
+
+.forgot-container h1,
+.otp-container h1
+{
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    margin: 20px 0px;
+    margin: 0px auto;
+}
+
+.forgot-container form,
+.otp-container form
+{
+    margin: 20px 0px;
+}
+
+.forgot-container form,
+.forgot-container form > div,
+.forgot-container form input,
+.otp-container form,
+.otp-container form > div ,
+.otp-container form input
+{
+    width: 100%;
+}
+
+.forgot-container label,
+.otp-container label
+{
+    font-family: "Inter", sans-serif;
+    margin-bottom: 5px;
+}
+
+.forgot-container form input,
+.otp-container form input
+{
+    padding: 5px 10px;
+    background-color: var(--boxBackground);
+    border: 1px solid var(--highlight);
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: all 0.5s linear;
+}
+
+.forgot-container form input:focus,
+.otp-container form input:focus
+{
+    box-shadow: 0px 0px 3px 1px var(--text);
+}
+
+@media screen and (min-width: 600px) {
+    #menu-bar 
+    {
+        display: none;
+    }
+
+    #navigation-container 
+    {
+        position: relative;
+        flex-flow: row;
+        width: auto;
+        background-color: transparent;
+        border: none;
+        max-height: 400px;
+    }
+
+    .navigation, .auth-navigation 
+    {
+        flex-flow: row;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .register-container 
+    {
+        position: static;
+        top: auto;
+        left: auto;
+        height: 80vh;
+        transform: none;
+        height: auto;
+        margin: auto;
+        max-width: 700px;
+    }
+
+    .button-container 
+    {
+        display: none;
+    }
+    
+    #register-form,
+    #login-form
+    {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 50%;
+        height: 500px;
+        margin-top: 0px;
+        justify-content: center;
+        background-color: var(--headerBackground);
+        padding: 0px 20px;
+    }
+
+    .isLogging #register-form 
+    {
+        display: none;
+        left: 50%;
+    }
+
+    .isLogging #login-form 
+    {
+        display: flex;
+        left: 50%;
+    }
+
+    .isLogging .register-text 
+    {
+        display: flex;
+        left: 0;
+    }
+
+    .isLogging .login-text 
+    {
+        left: 0;
+        display: none;
+    }
+
+    .form 
+    {
+        background-color: var(--headerBackground);
+    }
+
+    .login-text,
+    .register-text
+    {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 500px;
+        flex-flow: column;
+        padding: 0px 20px;
+        justify-content: center;
+        background-color: var(--accent);
+        color: var(--headerBackground);
+    }
+
+    .login-text 
+    {
+        border-radius: 25% 0px 0px 25%;
+        display: flex;
+    }
+
+    .register-text
+    {
+        border-radius: 0px 25% 25% 0px;
+    }
+
+    .login-text::after,
+    .register-text::after
+    {
+        content: "";
+        position: inherit;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--headerBackground);
+        z-index: -1;
+    }
+
+    .login-text h2,
+    .register-text h2
+    {
+        margin-bottom: 15px;
+    }
+
+    .login-text p,
+    .register-text p
+    {
+       font-family: "Inter", sans-serif;
+       margin-bottom: 20px;
+    }
+
+    .login-text button,
+    .register-text button
+    {
+        width: 100px;
+        border: 1px solid var(--headerBackground);
+    }
+
+    .login-text button:hover,
+    .register-text button:hover
+    {
+        border-color: var(--headingText);
+    }
+}
